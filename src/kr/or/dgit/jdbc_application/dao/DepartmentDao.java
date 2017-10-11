@@ -1,4 +1,4 @@
-package kr.or.dgit.jdbc_application.dto;
+package kr.or.dgit.jdbc_application.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.or.dgit.jdbc_application.dao.SqlDao;
+import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.jdbc.DBCon;
 
 public class DepartmentDao implements SqlDao<Department> {

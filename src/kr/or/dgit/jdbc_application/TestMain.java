@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import kr.or.dgit.jdbc_application.dao.DepartmentDao;
 import kr.or.dgit.jdbc_application.dto.Department;
-import kr.or.dgit.jdbc_application.dto.DepartmentDao;
 import kr.or.dgit.jdbc_application.jdbc.DBCon;
 import kr.or.dgit.jdbc_application.jdbc.JdbcUtil;
 
@@ -16,6 +16,26 @@ public class TestMain {
 	public static void main(String[] args) {
 		// testCon();
 		
+//		testDepartmentDao();
+		
+		testTitleDao();
+		
+		testEmployeeDao();
+		
+
+	}
+
+	private static void testEmployeeDao() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void testTitleDao() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void testDepartmentDao() {
 		Department dept = new Department(4, "마케팅", 10);
 		testInsert(dept);
 		testListAll();
@@ -27,10 +47,6 @@ public class TestMain {
 		
 		testDelete(dept);
 		testListAll();
-		
-		
-		
-
 	}
 
 	private static void testUpdate(Department dept) {
