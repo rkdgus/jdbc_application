@@ -23,6 +23,10 @@ public class Employee {
 
 	
 
+	public Employee(int empNo) {
+		this.empNo = empNo;
+	}
+
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -75,6 +79,7 @@ public class Employee {
 	public String toString() {
 		return String.format("%s, %s, %s, %s, %s, %s", empNo, empName, title.getTitleName(), manager.getEmpName(),
 				salary, dno.getDeptName());
+
 	}
 
 }

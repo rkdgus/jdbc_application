@@ -73,7 +73,7 @@ public class TitleDao implements SqlDao<Title>{
 			try(ResultSet rs = pstmt.executeQuery();){
 				if(rs.next()){
 					title = getTitle(rs);
-					JOptionPane.showMessageDialog(null, title);
+				
 				}
 			}
 		}
