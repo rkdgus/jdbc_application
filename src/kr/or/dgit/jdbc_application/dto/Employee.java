@@ -21,6 +21,8 @@ public class Employee {
 		this.dno = dno;
 	}
 
+	
+
 	public int getEmpNo() {
 		return empNo;
 	}
