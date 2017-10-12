@@ -1,0 +1,40 @@
+-- db 존재하면 삭제
+drop database if exists erp_project;
+
+-- db 생성
+create database erp_project;
+
+-- db 사용
+use erp_project;
+
+-- 부서테이블
+CREATE TABLE if not exists erp_project.department (
+    deptno int(11) ,
+    deptname char(10),
+    floor int(11) default 1,
+    PRIMARY KEY (deptno)
+);
+
+-- 직책테이블
+CREATE TABLE if not exists erp_project.title (
+    titleno int(11),
+    titlename char(10),
+    PRIMARY KEY (titleno)
+);
+
+-- 사원테이블
+CREATE TABLE if not exists erp_project.employee (
+      empno int(11),
+      empname varchar(20),
+      title int(11),
+      manager int(11),
+      salary int(11),
+      dno int(11),
+      PRIMARY KEY (empno),
+      FOREIGN KEY (manager) REFERENCES employee(empno),
+      FOREIGN KEY (dno) REFERENCES department (deptno),
+      FOREIGN KEY (title) REFERENCES title (titleno)
+);
+
+-- create and gran user
+grant select, insert, update, delete on erp_project.* to 'user_erp_project' identified by '1234';
