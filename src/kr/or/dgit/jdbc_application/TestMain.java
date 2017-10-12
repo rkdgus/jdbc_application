@@ -49,14 +49,16 @@ public class TestMain {
 		
 	}
 
-	private static void testSelectEmpno(Employee emp) {
-		try {
-			EmployeeDao.getInstance().selectItemByNo(emp);
+	private static void testSelectEmpno(Employee emp)  {
+		
+			try {
+				JOptionPane.showMessageDialog(null, EmployeeDao.getInstance().selectItemByNo(emp));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+		
 		
 		
 	}
