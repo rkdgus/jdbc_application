@@ -67,7 +67,10 @@ public class TestMain {
 				try {
 					tfc.isEmptyCheck();
 					Employee emp = tfc.getContent();
+					
+					
 					JOptionPane.showMessageDialog(null, emp);
+					
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}

@@ -82,10 +82,10 @@ public class EmployeeContent extends JPanel {
 	public Employee getContent() throws SQLException{
 		int empNo = Integer.parseInt(pEmpNo.getTextValue());
 		String empName = pEmpName.getTextValue();
-		Title title =  new Title((int)pTitle.getComboboxValue());
-		Employee manager = new Employee((int)pManager.getComboboxValue());
+		Title title =  (Title) pTitle.getComboboxValue();
+		Employee manager =(Employee) pManager.getComboboxValue();
 		int salary = (int)pSalary.getSpinner();
-		Department dno =new Department((int)pDno.getComboboxValue()); 
+		Department dno =(Department) pDno.getComboboxValue(); 
 		return new Employee(empNo, empName, title, manager, salary, dno);
 	}
 	
