@@ -26,9 +26,9 @@ public class EmployeeDao implements SqlDao<Employee>{
 			pstmt.setInt(1, item.getEmpNo());
 			pstmt.setString(2, item.getEmpName());
 			pstmt.setInt(3, item.getTitle().getTitleNo());
-			
+			pstmt.setInt(4, item.getManager().getEmpNo());
 			pstmt.setInt(5, item.getSalary());
-			pstmt.setString(6, item.getDno().getDeptName());
+			pstmt.setInt(6, item.getDno().getDeptNo());
 			pstmt.executeUpdate();
 		}
 		
