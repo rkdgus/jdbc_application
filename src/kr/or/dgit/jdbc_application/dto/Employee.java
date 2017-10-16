@@ -78,8 +78,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s %s %s %s %s", empNo, empName,
-				title, manager, salary, dno);
+		return String.format("%s (%s) ", empName, empNo
+				);
 	}
 
 	public Object[] toArray() {

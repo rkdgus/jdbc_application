@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import kr.or.dgit.jdbc_application.dto.Title;
 import kr.or.dgit.jdbc_application.jdbc.DBCon;
 
@@ -99,6 +97,8 @@ public class TitleDao implements SqlDao<Title>{
 		String titleName = rs.getString(2);
 		return new Title(titleNo, titleName);
 	}
+
+	
 
 }
 

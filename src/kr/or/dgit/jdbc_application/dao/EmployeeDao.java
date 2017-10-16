@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
@@ -99,22 +97,41 @@ public class EmployeeDao implements SqlDao<Employee> {
 
 		return lists;
 	}
+	
 
-	private Employee getEmployee(ResultSet rs) throws SQLException{
-		
-		
-		int empNo = rs.getInt(1);
-		String empName = rs.getString(2);
-		Title title = TitleDao.getInstance().selectItemByNo(new Title(rs.getInt(3)));
-		Employee manager;
-		if(empNo != 4377){
-			manager = EmployeeDao.getInstance().selectItemByNo(new Employee(rs.getInt(4)));
-		}else{
-			manager = new Employee(4377);
-		}
-		int salary = rs.getInt(5);
-		Department dno = DepartmentDao.getInstance().selectItemByNo( new Department(rs.getInt(6)));
+
+	private Employee getEmployee(ResultSet rs) throws SQLException {
+		int empNo = rs.getInt("empno");
+		String empName = rs.getString("empname");
+		Title title = new Title(rs.getInt("title"));
+		Employee manager = new Employee(rs.getInt("manager"));
+		int salary = rs.getInt("salary");
+		Department dno = new Department(rs.getInt("dno"));
 		return new Employee(empNo, empName, title, manager, salary, dno);
+		
 	}
+
+	
+	public List<Employee> selectItemByDno(Department item) throws SQLException {
+		List<Employee> lists = new ArrayList<>();
+		String sql = "select * from employee where dno=?";
+		Connection con = DBCon.getInstance().getConnection();
+		
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, item.getDeptNo());
+			try(ResultSet rs= pstmt.executeQuery();){
+				while(rs.next()){
+					lists.add(getEmployee(rs));
+					
+				}
+			}
+		}
+
+		return lists;
+	}
+
+	
+	
 
 }

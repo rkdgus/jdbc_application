@@ -14,9 +14,11 @@ import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
 import kr.or.dgit.jdbc_application.service.EmployeeService;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class EmployeeContent extends JPanel {
+public class EmployeeContent extends JPanel implements ActionListener {
 	private TextFieldComponent pEmpNo;
 	private TextFieldComponent pEmpName;
 	private ComboboxComponent<Title> pTitle;
@@ -24,7 +26,7 @@ public class EmployeeContent extends JPanel {
 	private SpinnerContent pSalary;
 	private ComboboxComponent<Department> pDno;
 	private EmployeeService service;
-
+	private Department dept = new Department(1);
 	
 	public EmployeeContent(EmployeeService service) {
 		this.service = service;
@@ -46,18 +48,22 @@ public class EmployeeContent extends JPanel {
 		add(pSalary);
 		
 		pDno = new ComboboxComponent("부서");
+		pDno.getCombo().addActionListener(this);
 		add(pDno);
 		
-		setManagerModel();
-		setTitleMOdel();
+		
+		
 		setDepartModel();
+		
+		setTitleMOdel();
+		
 	}
 	
 	
 
 
 	private void setManagerModel() {
-		List<Employee> lists = service.selectEmployeeByAll();
+		List<Employee> lists = service.selectEmployeeByDno(dept);
 		Vector<Employee> emp = new Vector<>(lists);
 		
 		pManager.setComboBoxModel(emp);				
@@ -105,4 +111,14 @@ public class EmployeeContent extends JPanel {
 	}
 
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == pDno.getCombo()) {
+			pDnoComboActionPerformed(e);
+		}
+	}
+	protected void pDnoComboActionPerformed(ActionEvent e) {
+		
+		dept = pDno.getComboboxValue();
+		setManagerModel();
+	}
 }

@@ -97,4 +97,6 @@ public class DepartmentDao implements SqlDao<Department> {
 		return new Department(deptNo, deptName, floor);
 	}
 
+	
+
 }
