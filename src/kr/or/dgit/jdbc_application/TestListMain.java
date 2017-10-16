@@ -12,6 +12,9 @@ import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.list.ListEmployee;
 import kr.or.dgit.jdbc_application.list.ListTitle;
+import kr.or.dgit.jdbc_application.service.DepartmentService;
+import kr.or.dgit.jdbc_application.service.EmployeeService;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 public class TestListMain {
 
@@ -19,6 +22,16 @@ public class TestListMain {
 
 	
 	public static void main(String[] args) {
+		TestList(new ListEmployee(new EmployeeService()));
+		TestList(new ListDepartment(new DepartmentService()));
+		TestList(new ListTitle(new TitleService()));
+		
+		
+		
+		
+	}
+
+	private static void TestList(AbstractList ld ) {
 		JFrame jf = new JFrame();
 		
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,8 +39,8 @@ public class TestListMain {
 		
 		
 		
-		AbstractList ld = new ListDepartment();
 		
+		ld.loadData();
 		jf.add(ld);
 		JButton btn = new JButton("test");
 		btn.addActionListener(new ActionListener() {
@@ -42,10 +55,6 @@ public class TestListMain {
 		
 		jf.add(btn, BorderLayout.SOUTH);
 		jf.setVisible(true);
-		
-		
-		
-		
 	}
 
 

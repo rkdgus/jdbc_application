@@ -1,6 +1,7 @@
 package kr.or.dgit.jdbc_application.common;
 
 import java.awt.GridLayout;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -9,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import kr.or.dgit.jdbc_application.dto.Title;
 
 @SuppressWarnings("serial")
 public class ComboboxComponent<T> extends JPanel {
@@ -59,4 +62,5 @@ public class ComboboxComponent<T> extends JPanel {
 	public JComboBox<T> getCombo() {
 		return comboBox;
 	}
+
 }

@@ -1,6 +1,10 @@
-package kr.or.dgit.jdbc_application.view;
+package kr.or.dgit.jdbc_application;
 
 import java.awt.EventQueue;
+
+import kr.or.dgit.jdbc_application.view.ViewDepartment;
+import kr.or.dgit.jdbc_application.view.ViewEmployee;
+import kr.or.dgit.jdbc_application.view.ViewTitle;
 
 public class TestView {
 	 

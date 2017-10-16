@@ -75,11 +75,30 @@ public class Employee {
 		this.dno = dno;
 	}
 
+
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s", empNo, empName, title.getTitleName(), manager.getEmpName(),
-				salary, dno.getDeptName());
+		return String.format("%s %s %s %s %s %s", empNo, empName,
+				title, manager, salary, dno);
+	}
 
+	public Object[] toArray() {
+		
+		return new Object[]{empNo, empName, title, manager, salary, dno};
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

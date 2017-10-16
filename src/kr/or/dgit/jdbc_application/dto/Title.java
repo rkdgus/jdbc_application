@@ -38,4 +38,10 @@ public class Title {
 		return String.format("%s, %s", titleNo, titleName);
 	}
 
+	public Object[] toArray() {
+		
+		
+		return  new Object[]{titleNo,titleName};
+	}
+
 }

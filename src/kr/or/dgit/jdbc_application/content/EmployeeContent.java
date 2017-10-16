@@ -2,6 +2,7 @@ package kr.or.dgit.jdbc_application.content;
 
 import java.awt.GridLayout;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -9,23 +10,24 @@ import javax.swing.JPanel;
 import kr.or.dgit.jdbc_application.common.ComboboxComponent;
 import kr.or.dgit.jdbc_application.common.SpinnerContent;
 import kr.or.dgit.jdbc_application.common.TextFieldComponent;
-import kr.or.dgit.jdbc_application.dao.EmployeeDao;
-import kr.or.dgit.jdbc_application.dao.TitleDao;
 import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
+import kr.or.dgit.jdbc_application.service.EmployeeService;
 
 @SuppressWarnings("serial")
 public class EmployeeContent extends JPanel {
 	private TextFieldComponent pEmpNo;
 	private TextFieldComponent pEmpName;
-	private ComboboxComponent pTitle;
-	private ComboboxComponent pManager;
+	private ComboboxComponent<Title> pTitle;
+	private ComboboxComponent<Employee> pManager;
 	private SpinnerContent pSalary;
-	private ComboboxComponent pDno;
+	private ComboboxComponent<Department> pDno;
+	private EmployeeService service;
 
 	
-	public EmployeeContent() {
+	public EmployeeContent(EmployeeService service) {
+		this.service = service;
 		setLayout(new GridLayout(0, 1, 0, 10));
 		
 		pEmpNo = new TextFieldComponent("사원번호");
@@ -52,29 +54,26 @@ public class EmployeeContent extends JPanel {
 	}
 	
 	
-	
+
+
 	private void setManagerModel() {
-		Vector<Employee> lists = new Vector<>();
-		lists.add(new Employee(1, "서현진",new Title(1, "사장"),new Employee(1), 100000, new Department(1)));
-		lists.add(new Employee(2, "아이유",new Title(1, "사장"),new Employee(1), 100000, new Department(1)));
-		lists.add(new Employee(3, "이효리",new Title(1, "사장"),new Employee(1), 100000, new Department(1)));
-		pManager.setComboBoxModel(lists);				
+		List<Employee> lists = service.selectEmployeeByAll();
+		Vector<Employee> emp = new Vector<>(lists);
+		
+		pManager.setComboBoxModel(emp);				
 	}
 
 	private void setTitleMOdel() {
-		Vector<Title> lists = new Vector<>();
-		lists.add(new Title(1, "사장"));
-		lists.add(new Title(2, "부장"));
-		lists.add(new Title(3, "사원"));
-		pTitle.setComboBoxModel(lists);		
+		List<Title> lists = service.selectTitleByAll();
+		Vector<Title> titles = new Vector<>(lists);
+		pTitle.setComboBoxModel(titles);		
 	}
 
 	public void setDepartModel(){
-		Vector<Department> lists = new Vector<>();
-		lists.add(new Department(1, "개발1", 11));
-		lists.add(new Department(2, "개발2", 12));
-		lists.add(new Department(3, "개발3", 13));
-		pDno.setComboBoxModel(lists);
+		List<Department> lists = service.selectDepartmentByAll();
+		Vector<Department> dept = new Vector<>(lists);
+		
+		pDno.setComboBoxModel(dept);
 	}
 	
 	

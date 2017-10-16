@@ -1,12 +1,21 @@
 package kr.or.dgit.jdbc_application.list;
 
+import java.util.List;
+
 import javax.swing.SwingConstants;
 
 import kr.or.dgit.jdbc_application.dto.Title;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 @SuppressWarnings("serial")
 public class ListTitle extends AbstractList {
+	private TitleService service;
 	
+
+	public ListTitle(TitleService service) {
+		this.service = service;
+	}
+
 	@Override
 	protected void setAlignWidth() {
 		setAlign(SwingConstants.CENTER, 0,1);
@@ -17,7 +26,11 @@ public class ListTitle extends AbstractList {
 
 	@Override
 	protected Object[][] getData() {
-		Object[][] data = {{1,"사장"},{2,"부장"}};
+		List<Title> lists =service.selectTitleAll();
+		Object[][] data = new Object[lists.size()][];
+		for(int i=0;i<lists.size();i++){
+			data[i] = lists.get(i).toArray();
+		}
 		return data;
 	}
 

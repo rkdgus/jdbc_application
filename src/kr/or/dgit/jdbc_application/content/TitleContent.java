@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import kr.or.dgit.jdbc_application.common.TextFieldComponent;
 import kr.or.dgit.jdbc_application.dto.Title;
+import kr.or.dgit.jdbc_application.service.TitleService;
 
 @SuppressWarnings("serial")
 public class TitleContent extends JPanel {
@@ -11,7 +12,7 @@ public class TitleContent extends JPanel {
 	private TextFieldComponent pTitleName;
 
 	
-	public TitleContent() {
+	public TitleContent(TitleService service) {
 		setLayout(new GridLayout(0, 1, 0, 10));
 		
 		pTitleNo = new TextFieldComponent("직급번호");
