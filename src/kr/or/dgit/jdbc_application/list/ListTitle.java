@@ -44,8 +44,7 @@ public class ListTitle extends AbstractList {
 	public Object getSelectedItem() {
 		int selectIndex = table.getSelectedRow();
 		int titleNo = (int) table.getValueAt(selectIndex, 0);
-		String titleName = (String) table.getValueAt(selectIndex, 1);
-		return new Title(titleNo, titleName);
+		return service.selectTitleByNo(new Title(titleNo));
 	}
 
 }

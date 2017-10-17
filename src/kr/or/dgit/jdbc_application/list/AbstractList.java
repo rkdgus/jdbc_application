@@ -3,6 +3,7 @@ package kr.or.dgit.jdbc_application.list;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -26,7 +27,9 @@ public abstract class AbstractList extends JPanel {
 		
 //		loadData();
 	}
-
+	public void setPopupMenu(JPopupMenu menu){
+		table.setComponentPopupMenu(menu);
+	}
 
 	public void loadData() {
 		DefaultTableModel model = new DefaultTableModel(getData(), getColumnNames());

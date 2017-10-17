@@ -41,6 +41,15 @@ public class DepartmentService {
 		}
 	}
 	
+	public	void updateDepartment(Department dept){
+		try {
+			deptDao.updateItem(dept);
+			showMessage("업데이트 완료");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Department>  selectDepartment(){
 		try {
 		return deptDao.selectItemByAll();

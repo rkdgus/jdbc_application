@@ -46,4 +46,26 @@ public class ViewEmployee extends AbstractView {
 		
 	}
 
+
+	@Override
+	protected void deleteContent(Object item) {
+		es.deleteEmployee((Employee)item);
+		
+	}
+
+
+	@Override
+	protected void updateContent(Object item) {
+		es.updateEmployee((Employee) item);
+		
+	}
+
+
+	@Override
+	protected Employee searchContent(int item) {
+		return es.selectEmployeeByNo(new Employee(item));
+		
+		
+	}
+
 }

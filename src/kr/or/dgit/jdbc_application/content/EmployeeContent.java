@@ -3,7 +3,6 @@ package kr.or.dgit.jdbc_application.content;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
@@ -36,14 +35,14 @@ public class EmployeeContent extends AbstractContent<Employee> implements Action
 		pEmpName = new TextFieldComponent("성명");
 		add(pEmpName);
 		
-		pTitle = new ComboboxComponent("직급");
+		pTitle = new ComboboxComponent<>("직급");
 		add(pTitle);
 		
-		pDno = new ComboboxComponent("부서");
+		pDno = new ComboboxComponent<>("부서");
 		pDno.getCombo().addActionListener(this);
 		add(pDno);
 		
-		pManager = new ComboboxComponent("직속상사");
+		pManager = new ComboboxComponent<>("직속상사");
 		add(pManager);
 		
 		pSalary = new SpinnerContent("급여");
@@ -89,7 +88,7 @@ public class EmployeeContent extends AbstractContent<Employee> implements Action
 		String empName = pEmpName.getTextValue();
 		Title title =  (Title) pTitle.getComboboxValue();
 		Employee manager =(Employee) pManager.getComboboxValue();
-		int salary = (int)pSalary.getSpinner();
+		int salary = (int)pSalary.getSpinnerValue();
 		Department dno =(Department) pDno.getComboboxValue(); 
 		return new Employee(empNo, empName, title, manager, salary, dno);
 	}
@@ -136,6 +135,30 @@ public class EmployeeContent extends AbstractContent<Employee> implements Action
 		pManager.setComboboxValue(0);
 		pSalary.setSpinner(1500000);
 		pDno.setComboboxValue(0);
+		
+	}
+
+
+
+
+	@Override
+	public void changeContent(Object content) {
+		pEmpNo.getTextField().setEnabled(false);
+		setContent((Employee) content);
+		
+	}
+
+
+
+
+	@Override
+	public void enable(boolean ok) {
+		pEmpNo.getTextField().setEnabled(ok);
+		pEmpName.getTextField().setEnabled(ok);
+		pTitle.getCombo().setEnabled(ok);
+		pManager.getCombo().setEnabled(ok);
+		pSalary.getSpinner().setEnabled(ok);
+		pDno.getCombo().setEnabled(ok);
 		
 	}
 }

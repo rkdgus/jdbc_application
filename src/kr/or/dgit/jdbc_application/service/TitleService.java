@@ -41,6 +41,16 @@ public class TitleService {
 		}
 	}
 	
+	public void updateTitle(Title title){
+		try {
+			titleDao.updateItem(title);
+			showMessage("업데이트 완료");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Title> selectTitleAll(){
 		try {
 			return titleDao.selectItemByAll();
@@ -55,7 +65,7 @@ public class TitleService {
 		try {
 			return titleDao.selectItemByNo(title);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		return null;

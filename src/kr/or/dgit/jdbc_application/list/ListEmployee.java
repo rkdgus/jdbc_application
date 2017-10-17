@@ -7,10 +7,9 @@ import javax.swing.SwingConstants;
 import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
-import kr.or.dgit.jdbc_application.service.DepartmentService;
 import kr.or.dgit.jdbc_application.service.EmployeeService;
-import kr.or.dgit.jdbc_application.service.TitleService;
 
+@SuppressWarnings("serial")
 public class ListEmployee extends AbstractList {
 	private EmployeeService empService;
 	

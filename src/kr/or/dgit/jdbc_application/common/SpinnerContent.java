@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class SpinnerContent extends JPanel {
 	private JSpinner spinner;
+	
 
 	public SpinnerContent(String str) {
 		setLayout(new GridLayout(1, 0, 10, 0));
@@ -26,8 +27,12 @@ public class SpinnerContent extends JPanel {
 
 	}
 	
-	public Object getSpinner(){
+	public Object getSpinnerValue(){
 		return spinner.getValue(); 
+	}
+	
+	public JSpinner getSpinner(){
+		return spinner; 
 	}
 	
 	public void setSpinner(Object value){
