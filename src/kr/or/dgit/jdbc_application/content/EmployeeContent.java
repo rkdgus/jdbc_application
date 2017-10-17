@@ -1,11 +1,11 @@
 package kr.or.dgit.jdbc_application.content;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
-
-import javax.swing.JPanel;
 
 import kr.or.dgit.jdbc_application.common.ComboboxComponent;
 import kr.or.dgit.jdbc_application.common.SpinnerContent;
@@ -14,11 +14,9 @@ import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.dto.Employee;
 import kr.or.dgit.jdbc_application.dto.Title;
 import kr.or.dgit.jdbc_application.service.EmployeeService;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class EmployeeContent extends JPanel implements ActionListener {
+public class EmployeeContent extends AbstractContent<Employee> implements ActionListener {
 	private TextFieldComponent pEmpNo;
 	private TextFieldComponent pEmpName;
 	private ComboboxComponent<Title> pTitle;
@@ -41,15 +39,17 @@ public class EmployeeContent extends JPanel implements ActionListener {
 		pTitle = new ComboboxComponent("직급");
 		add(pTitle);
 		
+		pDno = new ComboboxComponent("부서");
+		pDno.getCombo().addActionListener(this);
+		add(pDno);
+		
 		pManager = new ComboboxComponent("직속상사");
 		add(pManager);
 		
 		pSalary = new SpinnerContent("급여");
 		add(pSalary);
 		
-		pDno = new ComboboxComponent("부서");
-		pDno.getCombo().addActionListener(this);
-		add(pDno);
+		
 		
 		
 		
@@ -84,7 +84,7 @@ public class EmployeeContent extends JPanel implements ActionListener {
 	
 	
 	
-	public Employee getContent() throws SQLException{
+	public Employee getContent(){
 		int empNo = Integer.parseInt(pEmpNo.getTextValue());
 		String empName = pEmpName.getTextValue();
 		Title title =  (Title) pTitle.getComboboxValue();
@@ -120,5 +120,22 @@ public class EmployeeContent extends JPanel implements ActionListener {
 		
 		dept = pDno.getComboboxValue();
 		setManagerModel();
+	}
+
+
+
+
+
+
+
+	@Override
+	public void clear() {
+		pEmpNo.setTextValue("");
+		pEmpName.setTextValue("");
+		pTitle.setComboboxValue(0);
+		pManager.setComboboxValue(0);
+		pSalary.setSpinner(1500000);
+		pDno.setComboboxValue(0);
+		
 	}
 }

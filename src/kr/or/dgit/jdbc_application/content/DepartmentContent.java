@@ -2,13 +2,11 @@ package kr.or.dgit.jdbc_application.content;
 
 import java.awt.GridLayout;
 
-import javax.swing.JPanel;
-
 import kr.or.dgit.jdbc_application.common.TextFieldComponent;
 import kr.or.dgit.jdbc_application.dto.Department;
 
 @SuppressWarnings("serial")
-public class DepartmentContent extends JPanel {
+public class DepartmentContent extends AbstractContent<Department> {
 	private TextFieldComponent pDeptNo;
 	private TextFieldComponent pDeptName;
 	private TextFieldComponent pFloor;
@@ -44,6 +42,14 @@ public class DepartmentContent extends JPanel {
 		pDeptNo.isEmptyCheck();
 		pDeptName.isEmptyCheck();
 		pFloor.isEmptyCheck();
+		
+	}
+
+	@Override
+	public void clear() {
+		pDeptNo.setTextValue("");
+		pDeptName.setTextValue("");
+		pFloor.setTextValue("");
 		
 	}
 

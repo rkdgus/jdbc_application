@@ -1,8 +1,8 @@
 package kr.or.dgit.jdbc_application.view;
 
-import javax.swing.JPanel;
-
+import kr.or.dgit.jdbc_application.content.AbstractContent;
 import kr.or.dgit.jdbc_application.content.DepartmentContent;
+import kr.or.dgit.jdbc_application.dto.Department;
 import kr.or.dgit.jdbc_application.list.AbstractList;
 import kr.or.dgit.jdbc_application.list.ListDepartment;
 import kr.or.dgit.jdbc_application.service.DepartmentService;
@@ -10,6 +10,7 @@ import kr.or.dgit.jdbc_application.service.DepartmentService;
 @SuppressWarnings("serial")
 public class ViewDepartment extends AbstractView {
 	private DepartmentService service;
+	
 	
 
 	
@@ -19,22 +20,30 @@ public class ViewDepartment extends AbstractView {
 
 
 	protected AbstractList createList() {
-		DepartmentService ds = new DepartmentService();
-		ListDepartment pList = new ListDepartment(ds);
+		service = new DepartmentService();
+		pList = new ListDepartment(service);
 		pList.loadData();
 		return pList;
 	}
 
 
-	protected JPanel createContent() {
-		DepartmentContent pContent = new DepartmentContent();
-		return pContent;
+	@SuppressWarnings("unchecked")
+	protected AbstractContent<Department> createContent() {
+		pContent = new DepartmentContent();
+		return (AbstractContent<Department>) pContent;
 	}
 
 
 	@Override
 	protected void createService() {
 		service = new DepartmentService();
+		
+	}
+
+
+	@Override
+	protected void insertContent(Object content) {
+		service.insertDepartment((Department) content);
 		
 	}
 
